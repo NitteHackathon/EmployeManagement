@@ -1,0 +1,4 @@
+employee_id,first_name,last_name,email,department,salary,efficiency_rating
+1,John,Doe,john.doe@email.com,IT,60000,8.5
+2,Jane,Smith,jane.smith@email.com,HR,50000,7.8
+3,mohammed,nihal,mohammednihal@gmail.com.HR,100000,8.0
