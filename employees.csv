@@ -1,4 +1,7 @@
-employee_id,first_name,last_name,email,department
-10,mohd,nihal,mohammedw,re
-4,mohammed,raziq,mohammed@gmail.com,aiml
-4,mohammed,nihal,mohammed nihal,aiml
+employee_id,first_name,last_name,email,department,salary,bonus_percentage
+10,mohd,nihal,mohammedw,re,,
+4,mohammed,raziq,mohammed@gmail.com,aiml,,
+4,mohammed,nihal,mohammed nihal,aiml,,
+5,mohammed,nihal,,,,
+5,mohammed,nihal,,,,
+,,,,,,

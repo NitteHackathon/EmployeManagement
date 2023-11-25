@@ -1,5 +1,5 @@
-# onboarding.py
-
+import tkinter as tk
+from tkinter import simpledialog
 import pandas as pd
 
 def onboard_employee(employee_id, first_name, last_name, email, department):
@@ -17,6 +17,17 @@ def onboard_employee(employee_id, first_name, last_name, email, department):
         if employee_id in df['employee_id'].values:
             print(f"Employee with ID {employee_id} already exists.")
         else:
+            # Use a larger and more professional-looking dialogue box for input
+            root = tk.Tk()
+            root.withdraw()  # Hide the main window
+            root.geometry("400x150")  # Set the size of the dialogue box
+            root.title("Onboard Employee")
+
+            email = simpledialog.askstring("Onboard Employee", "Enter Email:", parent=root)
+            department = simpledialog.askstring("Onboard Employee", "Enter Department:", parent=root)
+
+            root.destroy()  # Destroy the temporary window
+
             # Create a new DataFrame with the onboarded employee
             new_employee = pd.DataFrame({'employee_id': [employee_id],
                                           'first_name': [first_name],

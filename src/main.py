@@ -1,7 +1,5 @@
 import tkinter as tk
 from tkinter import ttk, simpledialog
-import pandas as pd
-
 from onboarding import onboard_employee
 from employee_profile import update_employee_profile
 from salary_calculations import calculate_salary
@@ -14,14 +12,35 @@ class WorkforceManagementApp:
 
         # Style for ttk
         style = ttk.Style()
-        style.configure("TFrame", background="#f0f0f0")
-        style.configure("TLabel", background="#f0f0f0")
-        style.configure("TRadiobutton", background="#f0f0f0")
-        style.configure("TButton", background="#4CAF50", foreground="white")
+        style.configure("TFrame", background="#D3E3FC")  # Light blue background color
+        style.configure("TLabel", background="#D3E3FC")
+        style.configure("TRadiobutton", background="#D3E3FC")
+        
+        # Change the background color of the button to a different color (e.g., blue)
+        style.configure("TButton", background="#1976D2", foreground="white", borderwidth=2, relief="raised")  # Blue color with a border
+
         style.configure("TEntry", padding=(5, 5))
 
+        # Menu Bar
+        self.menu_bar = tk.Menu(root)
+        root.config(menu=self.menu_bar)
+
+        # File Menu
+        file_menu = tk.Menu(self.menu_bar, tearoff=0)
+        file_menu.add_command(label="Onboard Employee", command=lambda: self.handle_choice('1'))
+        file_menu.add_command(label="Update Employee Profile", command=lambda: self.handle_choice('2'))
+        file_menu.add_command(label="Calculate Salary", command=lambda: self.handle_choice('3'))
+        file_menu.add_command(label="Track Efficiency", command=lambda: self.handle_choice('4'))
+        file_menu.add_separator()
+        file_menu.add_command(label="Exit", command=lambda: self.handle_choice('5'))
+        self.menu_bar.add_cascade(label="File", menu=file_menu)
+
+        # Heading
+        ttk.Label(self.root, text="Employee Management System", font=('Helvetica', 16, 'bold')).grid(row=0, column=1, pady=10)
+
+        # Menu Frame
         self.menu_frame = ttk.Frame(self.root, padding=(10, 10), style="TFrame")
-        self.menu_frame.grid(row=0, column=0)
+        self.menu_frame.grid(row=1, column=1)
 
         self.choice_label = ttk.Label(self.menu_frame, text="Choose an action:", style="TLabel")
         self.choice_label.grid(row=0, column=0, columnspan=2, pady=10, sticky="w")
@@ -39,6 +58,7 @@ class WorkforceManagementApp:
             ttk.Radiobutton(self.menu_frame, text=text, variable=self.choice_var, value=value, style="TRadiobutton").grid(
                 row=i, column=0, columnspan=2, sticky="w", pady=5)
 
+        # Entry Fields
         self.employee_id_label = ttk.Label(self.menu_frame, text="Enter Employee ID:", style="TLabel")
         self.employee_id_label.grid(row=len(self.choices) + 1, column=0, columnspan=2, pady=10, sticky="w")
 
@@ -63,7 +83,7 @@ class WorkforceManagementApp:
 
         # Output Text widget
         self.output_text = tk.Text(self.root, wrap=tk.WORD, height=10, width=50)
-        self.output_text.grid(row=1, column=1, padx=10, pady=10)
+        self.output_text.grid(row=2, column=1, padx=10, pady=10)
 
         self.submit_button = ttk.Button(self.menu_frame, text="Submit", command=self.handle_choice, style="TButton")
         self.submit_button.grid(row=len(self.choices) + 7, column=0, columnspan=2, pady=10)
@@ -119,7 +139,6 @@ class WorkforceManagementApp:
 
             # Display the result in the Text widget
             self.output_text.insert(tk.END, str(result) + "\n")
-
 
         except Exception as e:
             print(f"An error occurred: {e}")
